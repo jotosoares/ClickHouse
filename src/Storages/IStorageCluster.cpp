@@ -125,7 +125,7 @@ void IStorageCluster::read(
     storage_snapshot->check(column_names);
 
     updateBeforeRead(context);
-    auto cluster = getCluster(context);
+    auto cluster = context->getCluster(cluster_name);
 
     /// Calculate the header. This is significant, because some columns could be thrown away in some cases like query with count(*)
 
