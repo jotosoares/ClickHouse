@@ -6,8 +6,11 @@
 #include <Interpreters/ActionsDAG.h>
 #include <Interpreters/TableJoin.h>
 #include <Interpreters/IJoin.h>
+#include <Interpreters/JoinInfo.h>
+#include <Processors/QueryPlan/QueryPlan.h>
 
 #include <Analyzer/IQueryTreeNode.h>
+#include <Analyzer/JoinNode.h>
 
 namespace DB
 {
@@ -227,4 +230,17 @@ std::shared_ptr<IJoin> chooseJoinAlgorithm(
     const Block & right_table_expression_header,
     const PlannerContextPtr & planner_context,
     const SelectQueryInfo & select_query_info);
+
+using PreparedJoinStorage = std::variant<std::monostate, std::shared_ptr<StorageJoin>, std::shared_ptr<const IKeyValueEntity>>;
+PreparedJoinStorage tryGetStorageInTableJoin(const QueryTreeNodePtr & table_expression);
+
+class JoinStepLogical;
+
+std::unique_ptr<JoinStepLogical> buildJoinStepLogical(
+    const Block & left_header,
+    const Block & right_header,
+    const NameSet & outer_scope_columns,
+    const JoinNode & join_node,
+    const PlannerContextPtr & planner_context);
+
 }
