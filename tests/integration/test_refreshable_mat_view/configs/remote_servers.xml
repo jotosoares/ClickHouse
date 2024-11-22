@@ -1,6 +1,6 @@
 <clickhouse>
     <remote_servers>
-        <test_cluster>
+        <default>
             <shard>
                 <replica>
                     <host>node1_1</host>
@@ -11,6 +11,6 @@
                     <port>9000</port>
                 </replica>
             </shard>
-        </test_cluster>
+        </default>
     </remote_servers>
 </clickhouse>
