@@ -9,6 +9,7 @@ import pprint
 import pwd
 import random
 import re
+import shlex
 import shutil
 import socket
 import stat
@@ -22,7 +23,6 @@ from typing import Any, List, Sequence, Tuple, Union
 
 import requests
 import urllib3
-import shlex
 
 try:
     # Please, add modules that required for specific tests only here.
