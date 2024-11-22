@@ -146,7 +146,6 @@ MODIFY REFRESH
 def module_setup_tables(started_cluster):
     node.query(f"DROP DATABASE IF EXISTS test_db")
     node.query(f"CREATE DATABASE IF NOT EXISTS test_db ON CLUSTER default")
-
     node.query("DROP TABLE IF EXISTS test_rmv ON CLUSTER default")
     node.query("DROP TABLE IF EXISTS src1 ON CLUSTER default")
     node.query("DROP TABLE IF EXISTS src2 ON CLUSTER default")
